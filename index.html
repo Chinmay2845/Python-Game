@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Maze Level {{ level }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Maze of Colors - Level {{ level }}</h1>
+
+    <div id="message"></div>
+    <div id="maze-container"></div>
+
+    <form action="/game" method="get" id="nextLevelForm" style="display:none;">
+        <input type="hidden" name="level" value="{{ level + 1 }}">
+        <button type="submit">Next Level</button>
+    </form>
+
+    <script>
+        var maze = {{ maze | tojson }};
+        var rows = {{ rows }};
+        var cols = {{ cols }};
+        var level = {{ level }};
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
